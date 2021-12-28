@@ -6,6 +6,9 @@ JOB.CreateCallback = function(name, cb)
     JOB.Callbacks[name] = cb
 end
 
+---comment
+---@param name any
+---@param ... any
 JOB.HandleCallback = function(name, ...)
     local src <const> = source
     if JOB.Callbacks[name] then
