@@ -46,6 +46,13 @@ handleLoad = () => {
         }
     })
 
+    window.addEventListener("message", function (e) {  
+        switch(e.data.type) {
+            case "open":
+                $(".main-wrapper").fadeIn(100)
+        }
+    })
+
     $("#home").on("click", () => {
         if (showing === "home") { return }
         $("#"+showing+"-wrapper").fadeOut(200)

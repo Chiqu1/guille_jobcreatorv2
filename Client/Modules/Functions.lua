@@ -1,5 +1,12 @@
 JOB.Callbacks = { }
+JOB.Variables = {
+    IsOpen = false
+}
 
+---comment
+---@param name any
+---@param cb any
+---@param ... any
 JOB.ExecuteCallback = function(name, cb, ...)
     JOB.Callbacks[name] = cb
     TriggerServerEvent("jobcreatorv2:server:handleCallback", name, ...)
@@ -12,3 +19,11 @@ JOB.HandleCallback = function(name, ...)
 end
 
 RegisterNetEvent("jobcreatorv2:client:handleCallback", JOB.HandleCallback)
+
+JOB.OpenUi = function()
+    SendNUIMessage({ type = "open" })
+    SetNuiFocus(true, true)
+    JOB.Variables['IsOpen'] = true
+end
+
+RegisterNetEvent("jobcreatorv2:client:openUi", JOB.OpenUi)

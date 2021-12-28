@@ -7,7 +7,7 @@ author 'guillerp#1928'
 lua54 'yes'
 
 shared_scripts {
-
+    './Shared/Cfg.lua'
 }
 
 server_scripts {
@@ -20,6 +20,7 @@ server_scripts {
 
     './Server/Classes/Job.lua',
     './Server/Classes/Player.lua',
+    './Server/Modules/Commands.lua',
 
     './Server/Modules/Init.lua',
 }

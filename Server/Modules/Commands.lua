@@ -1,0 +1,5 @@
+JOB.RegisterCommand("createnewjob", function (source, args)
+    JOB.GetPlayer(source, function(ply)
+        ply.triggerEvent("jobcreatorv2:client:openUi")
+    end)
+end)
