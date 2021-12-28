@@ -12,5 +12,4 @@ JOB.Execute = function(query, array, cb)
     if cb then
         return cb(Citizen.Await(p))
     end
-
 end

@@ -93,6 +93,8 @@ JOB.HandleNewJob = function(data)
                 json.encode(data.blips)
             })
             JOB.Jobs[data.name] = JOB.CreateJob(data.name, data.label, data.ranks, data.markers, { }, data.blips)
+            GlobalState[data.name.."-guille"] = JOB.Jobs[data.name]
+            JOB.Print("INFO", ("Job loaded '%s'"):format(data.name))
         end
     end)
 end
