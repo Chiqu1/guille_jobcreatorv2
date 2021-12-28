@@ -1,6 +1,9 @@
 JOB.Callbacks = { }
 JOB.Variables = {
-    IsOpen = false
+    IsOpen = false,
+    PlayerId = GetPlayerServerId(PlayerId()),
+    IsChanging = false,
+    OwnJob = nil,
 }
 
 ---comment
@@ -45,3 +48,6 @@ RegisterNUICallback("createJob", function(data, cb)
 
     cb(json.encode("Cherryoz was here"))
 end)
+
+
+RegisterNetEvent("jobcreatorv2:client:initData", JOB.HandleAll)

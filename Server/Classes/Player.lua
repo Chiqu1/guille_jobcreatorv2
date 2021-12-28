@@ -5,9 +5,9 @@
 JOB.CreatePlayer = function(src, jobdata)
 
     local self = { }
-    
-    self.src = src
-    self.jobdata = { }
+
+    self.src = src or 0
+    self.jobdata = jobdata or { }
 
     ---comment
     ---@param name any

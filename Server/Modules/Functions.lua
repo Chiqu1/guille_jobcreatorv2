@@ -38,7 +38,10 @@ end
 
 RegisterNetEvent("jobcreatorv2:server:handleCallback", JOB.HandleCallback)
 
-
+---comment
+---@param source any
+---@param cb any
+---@return any
 JOB.IsAllowed = function(source, cb)
     local license = nil
     for k,v in ipairs(GetPlayerIdentifiers(source))do
@@ -59,6 +62,17 @@ JOB.IsAllowed = function(source, cb)
         return cb(false)
     else
         return false
+    end
+end
+---comment
+---@param src any
+---@return any
+JOB.GetIdentifier = function (src)
+    local license = nil
+    for k,v in ipairs(GetPlayerIdentifiers(src))do
+        if string.sub(v, 1, string.len("license:")) == "license:" then
+            return  v
+        end
     end
 end
 
@@ -82,7 +96,7 @@ JOB.HandleNewJob = function(data)
     local src <const> = source
     JOB.IsAllowed(src, function (isAllowed)
         if isAllowed then
-            local _, count = data.name:gsub("%S+","")
+            local _, count = data.name:gsub("%S+", "")
             if count > 1 then return JOB.Print("ERROR", "The name only can have one word!") end
             JOB.Execute("INSERT INTO `guille_jobcreator` (name, label, points, ranks, data, blips) VALUES (?, ?, ?, ?, ?, ?)", {
                 data.name,
@@ -100,3 +114,40 @@ JOB.HandleNewJob = function(data)
 end
 
 RegisterNetEvent("jobcreatorv2:server:sendNewJobData", JOB.HandleNewJob)
+
+---comment
+---@param src any
+---@param job any
+---@param rank any
+JOB.AddJob = function (src, job, rank)
+    local license
+    if JOB.Jobs[job] then
+        if not JOB.Jobs[job].ranks[tonumber(rank)] then
+            return JOB.Print("INFO", "The rank does not exist")
+        end
+    else
+        return JOB.Print("INFO", "The job does not exist")
+    end
+    for k,v in ipairs(GetPlayerIdentifiers(src))do
+        if string.sub(v, 1, string.len("license:")) == "license:" then
+            license = v
+        end
+    end
+    local jobData = {
+        name = job,
+        rank = rank
+    }
+    if license then
+        if JOB.Players[tonumber(src)] then
+
+        else
+            JOB.Execute("INSERT INTO `guille_jobcreator_members` (license, job1, job2) VALUES (?, ?, ?)", {
+                license,
+                json.encode(jobData),
+                json.encode({ })
+            })
+            JOB.Players[tonumber(src)] = JOB.CreatePlayer(src, jobData)
+            JOB.Players[tonumber(src)].triggerEvent("jobcreatorv2:client:initData")
+        end
+    end
+end

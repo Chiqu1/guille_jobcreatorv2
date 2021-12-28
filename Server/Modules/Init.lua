@@ -2,7 +2,17 @@ JOB.Thread(function ()
 
     local Players = GetPlayers()
     for k, v in pairs(Players) do 
-        JOB.Players[tonumber(v)] = JOB.CreatePlayer(tonumber(v), { })
+        Wait(50)
+        GlobalState[v.."-jobplayer"] = nil
+        JOB.Execute("SELECT * FROM `guille_jobcreator_members` WHERE license = ?", {
+            JOB.GetIdentifier(v)
+        }, function (data)
+            if data[1] then
+                JOB.Players[tonumber(v)] = JOB.CreatePlayer(tonumber(v), json.decode(data[1]['job1']))
+                GlobalState[v.."-jobplayer"] = JOB.Players[tonumber(v)] 
+                JOB.Players[tonumber(v)].triggerEvent("jobcreatorv2:client:initData")
+            end
+        end)
     end
 
     JOB.Execute("SELECT * FROM `guille_jobcreator`", {}, function (data)
