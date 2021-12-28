@@ -25,7 +25,20 @@ handleLoad = () => {
         })
     }
 
-    
+    $.get("https://raw.githubusercontent.com/guillerp8/jobcreatorversion/ma/jobcreatorv2.json", function(v) {
+        let versions = JSON.parse(v)
+        versions.forEach((parsed) => {
+            $(".patch-notes-wrapper").append(`
+                <div class="patch-notes">
+                    <span class="text patch-notes-title" style="font-size: .6vw; margin-top: -0.3vw;">${parsed.title} <strong>${parsed.number}</strong></span>
+                    <div style="height: auto; position: absolute; margin-left: 4vw; margin-top: -0.3vw;"> 
+                        <span class="text patch-notes-text">${parsed.text}</span>
+                    </div>    
+                </div>
+            `)
+        })
+    })
+
     window.addEventListener("keydown", function(e) {
         if (e.key === "Escape") {
             JOB.ExecuteCallback("exit")
