@@ -11,11 +11,21 @@ shared_scripts {
 }
 
 server_scripts {
+    './Server/SMain.lua',
 
+    './Server/Modules/Logger.lua',
+    './Server/Modules/Functions.lua',
+
+    './Server/Classes/Job.lua',
+    './Server/Classes/Player.lua',
+
+    './Server/Modules/Init.lua',
 }
 
 client_scripts {
+    './Client/CMain.lua',
 
+    './Client/Modules/Functions.lua',
 }
 
 ui_page './Ui/Index.html'

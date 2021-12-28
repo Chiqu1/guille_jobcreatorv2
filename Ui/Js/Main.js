@@ -12,7 +12,7 @@ handleLoad = () => {
             })
         })
     })
-
+    $("body").hide()
 
             /*<div style="margin-top: 1vw">
                 <input class="input blipin" placeholder="X"></input>

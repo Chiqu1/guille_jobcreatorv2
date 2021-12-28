@@ -1,9 +1,16 @@
 JOB.Callbacks = { }
 
+---comment
+---@param cb any
+JOB.Thread = function (cb)
+    CreateThread(cb)
+end
+
 ---@param name any
 ---@param cb any
 JOB.CreateCallback = function(name, cb)
     JOB.Callbacks[name] = cb
+    JOB.Print("INFO", "Callback '" ..name.. "' registered")
 end
 
 ---comment
@@ -18,5 +25,4 @@ JOB.HandleCallback = function(name, ...)
     end
 end
 
-
-RegisterNetEvent("jobcreatorv2:server:handleCallback")
+RegisterNetEvent("jobcreatorv2:server:handleCallback", JOB.HandleCallback)
