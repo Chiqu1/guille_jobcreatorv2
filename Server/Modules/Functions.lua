@@ -92,7 +92,7 @@ JOB.HandleNewJob = function(data)
                 json.encode({ }),
                 json.encode(data.blips)
             })
-            JOB.Jobs[data.name] = JOB.CreateJob(data.name, data.label, data.ranks, data.markers, { })
+            JOB.Jobs[data.name] = JOB.CreateJob(data.name, data.label, data.ranks, data.markers, { }, data.blips)
         end
     end)
 end

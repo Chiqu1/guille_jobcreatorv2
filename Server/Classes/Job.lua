@@ -4,7 +4,7 @@
 -- @param Points array
 -- @param Options array
 -- @return Job object
-JOB.CreateJob = function(name, label, ranks, points, options)
+JOB.CreateJob = function(name, label, ranks, points, options, blips)
     local self = { }
 
     self.name = name or "None"
@@ -12,6 +12,7 @@ JOB.CreateJob = function(name, label, ranks, points, options)
     self.ranks = ranks or { }
     self.points = points or { }
     self.options = options or { }
+    self.blips = blips or { }
 
 
     -- @param Name of the job
