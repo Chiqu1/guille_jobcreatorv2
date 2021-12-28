@@ -3,3 +3,8 @@ RegisterNUICallback("getCoords", function (data, cb)
     local Coords = GetEntityCoords(Ped)
     cb(json.encode(Coords))
 end)
+
+RegisterNUICallback("exit", function (data, cb)
+    SetNuiFocus(false, false)
+    cb(json.encode("ok"))
+end)

@@ -265,3 +265,42 @@
     background: rgb(0, 52, 149);
     border-radius: .2vw;
 }
+
+
+.patch-notes-wrapper {
+    position: absolute;
+    width: 100%;
+    top: 9.1vw;
+    height: 13.5vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.patch-notes {
+    position: relative;
+    overflow-y: auto;
+    width: 80%;
+    margin-top: .5vw;
+    height: auto;
+    display: flex;
+    min-height: 2vw;
+    background-color: #031481e1;
+    border-radius: .2vw;
+    padding-top: .7vw;
+    padding-bottom: .7vw;
+    padding-left: .7vw;
+}
+
+/* .patch-notes-title {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 8%;
+} */
+
+.patch-notes-text {
+    font-size: .5vw;
+    text-align: justify;
+}

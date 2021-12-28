@@ -3,22 +3,18 @@ handleLoad = () => {
     let blipsIncluded = 0
     let markersIncluded = 0
     let ranksIncluded = 0
+    let showing = "home"
     let items = ["home", "add", "edit", "setting"]
     document.getElementById("home").style.color = "#7587fb"
     items.forEach((val) => {
         document.getElementById(val).addEventListener("click", () => {
             document.getElementById(val).style.color = "#7587fb"
             items.forEach((val2) => {
-                console.log()
                 if (!(val2 === val)) {
                     document.getElementById(val2).style.color = "white"
                 }
             })
         })
-    })
-
-    window.addEventListener("message", function(event) {
-
     })
 
     JOB.ExecuteCallback = async function(name, data) {
@@ -28,6 +24,32 @@ handleLoad = () => {
             })
         })
     }
+
+    
+    window.addEventListener("keydown", function(e) {
+        if (e.key === "Escape") {
+            JOB.ExecuteCallback("exit")
+            $(".main-wrapper").fadeOut(200)
+        }
+    })
+
+    $("#home").on("click", () => {
+        if (showing === "home") { return }
+        $("#"+showing+"-wrapper").fadeOut(200)
+        showing = "home"
+        setTimeout(() => {
+            $("#"+showing+"-wrapper").fadeIn(200) 
+        }, 200);
+    })
+
+    $("#add").on("click", () => {
+        if (showing === "add") { return }
+        $("#"+showing+"-wrapper").fadeOut(200)
+        showing = "add"
+        setTimeout(() => {
+            $("#"+showing+"-wrapper").fadeIn(200) 
+        }, 200);
+    })
 
     $(".addblip").on("click", function () {  
         blipsIncluded++
@@ -46,7 +68,6 @@ handleLoad = () => {
             let coords = await JOB.ExecuteCallback("getCoords")
             let axis = ['x', 'y', 'z']
             let actualMarker = $(this).attr("num")
-            console.log(actualMarker)
             axis.forEach((ax) => {
                 $(`#blip-${actualMarker}-${ax}`).val(coords[ax])
             })
