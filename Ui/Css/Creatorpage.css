@@ -122,3 +122,12 @@
     gap: .6vw;
     background-color: rgb(6, 11, 59);
 }
+
+.cancel-button {
+    width: 5vw;
+    height: 1.5vw;
+    border-radius: .2vw;
+    top: 1vw;
+    right: 1vw;
+    background-color: rgb(199, 21, 15);
+}

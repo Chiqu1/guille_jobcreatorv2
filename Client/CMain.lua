@@ -1,6 +1,6 @@
 JOB = setmetatable({ }, JOB)
 
 CreateThread(function ()
-    Wait(1000)
+    Wait(100)
     SetNuiFocus(true, true)
 end)

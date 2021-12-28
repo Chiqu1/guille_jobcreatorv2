@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="./Css/Style.css">
         <link rel="stylesheet" href="./Css/Creatorpage.css">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
         <script src="./Js/Main.js"></script>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
@@ -48,6 +49,7 @@
                 </div> -->
 
                 <div class="creator-wrapper">
+                    <div class="button cancel-button"><span class="text confirmjob">Reset Data</span></div>
                     <div class="aspects">
                         <div class="aspect">
                             <span class="text titleaspect" style="font-size: .8vw;"><strong>General Info</strong></span>
@@ -60,39 +62,21 @@
                         </div>
 
                         <div class="aspect">
-                            <span class="text titleaspect" style="font-size: .8vw;"><strong>Points</strong></span>
-                            <div class="button placemiddle addrank"><span class="text" style="font-size: .7vw;">Add marker</span></div>
-                            <div class="placemiddle rankpart">
+                            <span class="text titleaspect" style="font-size: .8vw;"><strong>Points (optional)</strong></span>
+                            <div class="button placemiddle addrank" id="addmarker"><span class="text" style="font-size: .7vw;">Add marker</span></div>
+                            <div class="placemiddle rankpart" id="markerpart">
                                 <!-- Code injected by js -->
-                                <div style="margin-top: 1vw">
-                                    <input class="input blipin" placeholder="X"></input>
-                                    <input class="input blipin" placeholder="Y"></input>
-                                    <input class="input blipin" placeholder="Z"></input>
-                                    <select style="width: 2vw;"><option value="armario">Armario</option><option value="get">Sacar coches</option><option value="save">Guardar vehículos</option><option value="boss">Jefe</option><option value="shop">Tienda</option></select>
-                                    <div class="button actualcoords" style="background-color: red;"><span class="text" style="font-size: .4vw;">Actual coords</span></div>
-                                </div>
                             </div>
                         </div>
                         <div class="aspect">
-                            <span class="text titleaspect" style="font-size: .8vw;"><strong>Ranks</strong></span>
-                            <div class="button placemiddle addrank"><span class="text" style="font-size: .7vw;">Add rank</span></div>
-                            <div class="placemiddle rankpart">
+                            <span class="text titleaspect" style="font-size: .8vw;"><strong>Ranks (optional)</strong></span>
+                            <div class="button placemiddle addrank" id="rankbutton"><span class="text" style="font-size: .7vw;">Add rank</span></div>
+                            <div class="placemiddle rankpart" id="rankpart">
                                 <!-- Code injected by js -->
-                                <div style="margin-top: 1vw">
-                                    <input class="input blipin" placeholder="Name"></input>
-                                    <input class="input blipin" placeholder="Label"></input>
-                                    <div class="button actualcoords" style="background-color: red;"><span class="text" style="font-size: .4vw;">Boss</span></div>
-                                </div>
                             </div>
                         </div>
-                        <div class="aspect"></div>
-                        <div class="aspect"></div>
-                        <div class="aspect"></div>
-                        <div class="aspect"></div>
-                        <div class="aspect"></div>
-                        <div class="aspect"></div>
                     </div>
-                    <div class="button confirm-button"><span class="text confirmjob">Confirm Job</span></div>
+                    <span class="text" style="position: absolute; bottom: 1.25vw; font-size: .7vw; right: 7vw;">Edit the job data in the <strong>edit</strong> part</span><div class="button confirm-button"><span class="text confirmjob">Confirm Job</span></div>
                     
                 </div>
 

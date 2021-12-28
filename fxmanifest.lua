@@ -26,7 +26,8 @@ server_scripts {
 
 client_scripts {
     './Client/CMain.lua',
-
+    
+    './Client/Modules/NuiCallbacks.lua',
     './Client/Modules/Functions.lua',
 }
 

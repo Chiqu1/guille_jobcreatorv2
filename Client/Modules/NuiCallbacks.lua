@@ -1,0 +1,5 @@
+RegisterNUICallback("getCoords", function (data, cb)
+    local Ped = PlayerPedId()
+    local Coords = GetEntityCoords(Ped)
+    cb(json.encode(Coords))
+end)

@@ -1,5 +1,8 @@
 handleLoad = () => {
+    const JOB = []
     let blipsIncluded = 0
+    let markersIncluded = 0
+    let ranksIncluded = 0
     let items = ["home", "add", "edit", "setting"]
     document.getElementById("home").style.color = "#7587fb"
     items.forEach((val) => {
@@ -13,24 +16,127 @@ handleLoad = () => {
             })
         })
     })
-    
-    $(".addblip").on("click", function () {  
-        blipsIncluded++
-        $("#blippart").append(`
-            <div id="blip-${blipsIncluded}" style="margin-top: 1vw">
-                <input class="input blipin" id="blip-${blipsIncluded}-x" placeholder="X"></input>
-                <input class="input blipin" id="blip-${blipsIncluded}-y" placeholder="Y"></input>
-                <input class="input blipin" id="blip-${blipsIncluded}-z" placeholder="Z"></input>
-                <input class="input blipin" id="blip-${blipsIncluded}-text" placeholder="Text"></input>
-                <input class="input blipin" id="blip-${blipsIncluded}-color" placeholder="Color"></input>
-                <input class="input blipin" id="blip-${blipsIncluded}-sprite" placeholder="Sprite"></input>
-                <div id="blip-${blipsIncluded}-button" class="button actualcoords"><span class="text" style="font-size: .4vw;">Actual coords</span></div>
-            </div>
-        `)
+
+    window.addEventListener("message", function(event) {
 
     })
 
+    JOB.ExecuteCallback = async function(name, data) {
+        return new Promise(resolve => {
+            $.post("https://guille_jobcreatorv2/"+name, JSON.stringify({data: data}), function(result) {
+                resolve(JSON.parse(result))
+            })
+        })
+    }
+
+    $(".addblip").on("click", function () {  
+        blipsIncluded++
+        $("#blippart").append(`
+            <div id="blip-${blipsIncluded}" num="${blipsIncluded}" style="margin-top: 1vw">
+                <input class="input blipin" num="${blipsIncluded}" id="blip-${blipsIncluded}-x" placeholder="X"></input>
+                <input class="input blipin" num="${blipsIncluded}" id="blip-${blipsIncluded}-y" placeholder="Y"></input>
+                <input class="input blipin" num="${blipsIncluded}" id="blip-${blipsIncluded}-z" placeholder="Z"></input>
+                <input class="input blipin" num="${blipsIncluded}" id="blip-${blipsIncluded}-text" placeholder="Text"></input>
+                <input class="input blipin" num="${blipsIncluded}" id="blip-${blipsIncluded}-color" placeholder="Color"></input>
+                <input class="input blipin" num="${blipsIncluded}" id="blip-${blipsIncluded}-sprite" placeholder="Sprite"></input>
+                <div id="blip-${blipsIncluded}-button" num="${blipsIncluded}" class="button actualcoords blip-actualcoords"><span class="text" style="font-size: .4vw;">Actual coords</span></div>
+            </div>
+        `)
+        $(`#blip-${blipsIncluded}-button`).on("click", async function () {  
+            let coords = await JOB.ExecuteCallback("getCoords")
+            let axis = ['x', 'y', 'z']
+            let actualMarker = $(this).attr("num")
+            console.log(actualMarker)
+            axis.forEach((ax) => {
+                $(`#blip-${actualMarker}-${ax}`).val(coords[ax])
+            })
+        })
+    })
+
+
+    $("#addmarker").on("click", function () {  
+        markersIncluded++
+        $("#markerpart").append(`
+            <div style="margin-top: 1vw" num="${markersIncluded}" id="marker-${markersIncluded}">
+                <input class="input blipin" num="${markersIncluded}" id="marker-${markersIncluded}-x" placeholder="X"></input>
+                <input class="input blipin" num="${markersIncluded}" id="marker-${markersIncluded}-y" placeholder="Y"></input>
+                <input class="input blipin" num="${markersIncluded}" id="marker-${markersIncluded}-z" placeholder="Z"></input>
+                <select num="${markersIncluded}" id="${markersIncluded}-selected" style="width: 2vw;"><option value="armario">Armario</option><option value="get">Sacar coches</option><option value="save">Guardar vehículos</option><option value="boss">Jefe</option><option value="shop">Tienda</option></select>
+                <div class="button actualcoords" num="${markersIncluded}" id="marker-${markersIncluded}-button" style="background-color: red;"><span class="text" style="font-size: .4vw;">Actual coords</span></div>
+            </div>
+        `)
+        $(`#marker-${markersIncluded}-button`).on("click", async function () {  
+            let coords = await JOB.ExecuteCallback("getCoords")
+            let actualMarker = $(this).attr("num")
+            let axis = ['x', 'y', 'z']
+            axis.forEach((ax) => {
+                $(`#marker-${actualMarker}-${ax}`).val(coords[ax])
+            })
+        })
+    })
+
+    $("#rankbutton").on("click", function () {  
+        ranksIncluded++
+        $("#rankpart").append(`
+            <div num="${ranksIncluded}" is-boss="false" id="rank-${ranksIncluded}" style="margin-top: 1vw">
+                <input num="${ranksIncluded}" id="rank-${ranksIncluded}-name" class="input blipin" placeholder="Name"></input>
+                <input num="${ranksIncluded}" id="rank-${ranksIncluded}-label" class="input blipin" placeholder="Label"></input>
+                <div num="${ranksIncluded}" id="rank-${ranksIncluded}-boss" class="button actualcoords" style="background-color: red;"><span class="text" style="font-size: .4vw;">Boss</span></div>
+            </div>
+        `)
+        $(`#rank-${ranksIncluded}-boss`).on("click", function() {
+            const num = $(this).attr("num")
+            const parent = $(`#rank-${num}`).attr("is-boss");
+            if (parent === "false") {
+                $(`#rank-${num}`).attr("is-boss", "true");
+                $(`#rank-${num}-boss`).css("background-color", "green")
+            } else {
+                $(`#rank-${num}`).attr("is-boss", "false");
+                $(`#rank-${num}-boss`).css("background-color", "red")
+            }
+        })
+    })
+
+    $(".confirm-button").on("click", function() {
+        let initialData = {
+            name: $(".jobname").val(),
+            label: $(".joblabel").val(),
+            blips: [],
+            markers: [],
+            ranks: [],
+        }
+        for (var i = 1; i <= blipsIncluded; i++) {
+            let toInsert = {
+                x: $(`#blip-${i}-x`).val(),
+                y: $(`#blip-${i}-y`).val(),
+                z: $(`#blip-${i}-z`).val(),
+                color: $(`#blip-${i}-color`).val(),
+                text: $(`#blip-${i}-text`).val(),
+                sprite: $(`#blip-${i}-sprite`).val(),
+            }
+            initialData.blips.push(toInsert)
+        }
+        for (var i = 1; i <= markersIncluded; i++) {
+            let toInsert = {
+                x: $(`#marker-${i}-x`).val(),
+                y: $(`#marker-${i}-y`).val(),
+                z: $(`#marker-${i}-z`).val(),
+                selected: $(`#${i}-selected`).val(),
+            }
+            initialData.markers.push(toInsert)
+        }
+        for (var i = 1; i <= ranksIncluded; i++) {
+            let toInsert = {
+                name: $(`#rank-${i}-name`).val(),
+                y: $(`#rank-${i}-label`).val(),
+                isBoss: $(`#rank-${i}`).attr("is-boss"),
+            }
+            initialData.ranks.push(toInsert)
+        }
+    })
 }
+
+
 
 window.addEventListener("load", this.handleLoad)
 
