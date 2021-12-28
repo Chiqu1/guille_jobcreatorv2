@@ -15,6 +15,8 @@ server_scripts {
 
     './Server/Modules/Logger.lua',
     './Server/Modules/Functions.lua',
+    './Server/Modules/Database.lua',
+    './Server/Modules/Database.js',
 
     './Server/Classes/Job.lua',
     './Server/Classes/Player.lua',
