@@ -5,6 +5,7 @@
 JOB.CreatePlayer = function(src, jobdata)
 
     local self = { }
+    
     self.src = src
     self.jobdata = { }
 

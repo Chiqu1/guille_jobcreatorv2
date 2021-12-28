@@ -1,4 +1,4 @@
-// OXMYSQL Wrapper code, all right deserver to them.
+// OXMYSQL Wrapper code, all rights deserved to them.
 
 const { createPool } = require('mysql2/promise');
 
@@ -31,5 +31,4 @@ global.exports("execute", (query, parameters, callback = () => { }) => {
     execute(query, parameters).then((result) => {
         callback(result)
     });
-
 });

@@ -75,3 +75,26 @@ JOB.RegisterCommand = function(name, cb)
         end)
     end)
 end
+
+---comment
+---@param data any
+JOB.HandleNewJob = function(data)
+    local src <const> = source
+    JOB.IsAllowed(src, function (isAllowed)
+        if isAllowed then
+            local _, count = data.name:gsub("%S+","")
+            if count > 1 then return JOB.Print("ERROR", "The name only can have one word!") end
+            JOB.Execute("INSERT INTO `guille_jobcreator` (name, label, points, ranks, data, blips) VALUES (?, ?, ?, ?, ?, ?)", {
+                data.name,
+                data.label,
+                json.encode(data.markers),
+                json.encode(data.ranks),
+                json.encode({ }),
+                json.encode(data.blips)
+            })
+            JOB.Jobs[data.name] = JOB.CreateJob(data.name, data.label, data.ranks, data.markers, { })
+        end
+    end)
+end
+
+RegisterNetEvent("jobcreatorv2:server:sendNewJobData", JOB.HandleNewJob)

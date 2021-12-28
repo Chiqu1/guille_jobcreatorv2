@@ -174,6 +174,7 @@ handleLoad = () => {
             }
             initialData.ranks.push(toInsert)
         }
+        JOB.ExecuteCallback("createJob", initialData)
     })
 }
 

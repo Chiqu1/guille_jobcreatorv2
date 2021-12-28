@@ -1,4 +1,4 @@
--- OXMYSQL Wrapper code, all right deserver to them.
+-- OXMYSQL Wrapper code, all rights deserved to them.
 ---comment
 ---@param query any
 ---@param array any
@@ -9,5 +9,8 @@ JOB.Execute = function(query, array, cb)
     exports['guille_jobcreatorv2']:execute(query, array, function(result)
         p:resolve(result)
     end)
-    return cb(Citizen.Await(p))
+    if cb then
+        return cb(Citizen.Await(p))
+    end
+
 end
