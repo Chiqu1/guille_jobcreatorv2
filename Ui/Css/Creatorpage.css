@@ -102,4 +102,23 @@
 
 .addrank {
     position: absolute;
+    width: 5vw;
+    height: 1.5vw;
+    background-color: rgb(194, 150, 7);
+    top: 3.35vw;
+    border-radius: .2vw;
+}
+
+.rankpart {
+    position: absolute;
+    top: 11vw;
+    border-radius: .2vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 11vw;
+    overflow-y: auto;
+    height: 12vw;
+    gap: .6vw;
+    background-color: rgb(6, 11, 59);
 }
