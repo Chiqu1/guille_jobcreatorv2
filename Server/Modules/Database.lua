@@ -1,3 +1,4 @@
+-- OXMYSQL Wrapper code, all right deserver to them.
 ---comment
 ---@param query any
 ---@param array any

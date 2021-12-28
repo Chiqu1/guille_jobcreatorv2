@@ -1,3 +1,10 @@
+.aspect {
+    -webkit-font-smoothing: antialiased;
+    -webkit-transform: translate3d(0,0,0) !important;
+    transform: translate3d(0,0,0) !important;
+    -webkit-filter: blur(0px);
+}
+
 .main-wrapper {
     position: absolute;
     transform: translate(-50%, -50%);
@@ -31,6 +38,7 @@
     color: white;
     font-family: 'Montserrat', sans-serif;
     user-select: none;
+
 }
 
 .title {

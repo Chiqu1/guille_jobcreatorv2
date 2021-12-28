@@ -1,3 +1,5 @@
+// OXMYSQL Wrapper code, all right deserver to them.
+
 const { createPool } = require('mysql2/promise');
 
 const pool = createPool({
