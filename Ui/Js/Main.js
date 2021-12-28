@@ -4,14 +4,6 @@ handleLoad = () => {
     items.forEach((val) => {
         document.getElementById(val).addEventListener("click", () => {
             document.getElementById(val).style.color = "#7587fb"
-            if (val === "add") {
-                $(".data-wrapper").addClass("scale-out").fadeOut(200)
-                setTimeout(() => {
-                    $(".data-wrapper").removeClass("scale-out") 
-                }, 200);
-            } else if (val === "home") {
-
-            }
             items.forEach((val2) => {
                 console.log()
                 if (!(val2 === val)) {
@@ -21,9 +13,8 @@ handleLoad = () => {
         })
     })
 
-    $(".addblip").on("click", function () {
-        $(".blippart").append(`
-            <div style="margin-top: 1vw">
+
+            /*<div style="margin-top: 1vw">
                 <input class="input blipin" placeholder="X"></input>
                 <input class="input blipin" placeholder="Y"></input>
                 <input class="input blipin" placeholder="Z"></input>
@@ -31,9 +22,8 @@ handleLoad = () => {
                 <input class="input blipin" placeholder="Color"></input>
                 <input class="input blipin" placeholder="Sprite"></input>
                 <div class="button actualcoords"><span class="text" style="font-size: .4vw;">Actual coords</span></div>
-            </div>
-        `)
-    })
+            </div>*/
+
 }
 
 window.addEventListener("load", this.handleLoad)
