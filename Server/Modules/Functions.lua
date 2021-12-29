@@ -138,7 +138,7 @@ JOB.AddJob = function (src, job, rank)
         rank = rank
     }
     if license then
-        if JOB.Players[tonumber(src)] then
+        if #JOB.Players[tonumber(src)].jobdata > 0 then
 
         else
             JOB.Execute("INSERT INTO `guille_jobcreator_members` (license, job1, job2) VALUES (?, ?, ?)", {
@@ -147,6 +147,7 @@ JOB.AddJob = function (src, job, rank)
                 json.encode({ })
             })
             JOB.Players[tonumber(src)] = JOB.CreatePlayer(src, jobData)
+            GlobalState[src..'-jobplayer'] = JOB.Players[tonumber(src)]
             JOB.Players[tonumber(src)].triggerEvent("jobcreatorv2:client:initData")
         end
     end

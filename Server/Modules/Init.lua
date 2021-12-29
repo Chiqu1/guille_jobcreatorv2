@@ -1,9 +1,11 @@
 JOB.Thread(function ()
 
     local Players = GetPlayers()
+    
     for k, v in pairs(Players) do 
         Wait(50)
         GlobalState[v.."-jobplayer"] = nil
+        JOB.Players[tonumber(v)] = JOB.CreatePlayer(tonumber(v), { })
         JOB.Execute("SELECT * FROM `guille_jobcreator_members` WHERE license = ?", {
             JOB.GetIdentifier(v)
         }, function (data)

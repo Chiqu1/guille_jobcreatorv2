@@ -1,3 +1,4 @@
+---comment
 JOB.HandleAll = function ()
     JOB.Variables.IsChanging = true
     CreateThread(function ()
@@ -16,6 +17,9 @@ JOB.HandleAll = function ()
                 if Distance < 20 then
                     Sleep = 0
                     DrawMarker(1, MarkerCoords, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 255, 233, 0, 255, 0, 0, 0, 0, 0, 0, 0)
+                    if Distance < 1.5 then
+                        JOB.Markers[v.selected](MarkerCoords)
+                    end
                 end
             end
 

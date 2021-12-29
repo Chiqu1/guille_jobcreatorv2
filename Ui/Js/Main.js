@@ -102,7 +102,7 @@ handleLoad = () => {
                 <input class="input blipin" num="${markersIncluded}" id="marker-${markersIncluded}-x" placeholder="X"></input>
                 <input class="input blipin" num="${markersIncluded}" id="marker-${markersIncluded}-y" placeholder="Y"></input>
                 <input class="input blipin" num="${markersIncluded}" id="marker-${markersIncluded}-z" placeholder="Z"></input>
-                <select num="${markersIncluded}" id="${markersIncluded}-selected" style="width: 2vw;"><option value="armario">Armario</option><option value="get">Sacar coches</option><option value="save">Guardar vehículos</option><option value="boss">Jefe</option><option value="shop">Tienda</option></select>
+                <select num="${markersIncluded}" id="${markersIncluded}-selected" style="width: 2vw;"><option value="armory">Armario</option><option value="getvehs">Sacar coches</option><option value="savevehs">Guardar vehículos</option><option value="boss">Jefe</option><option value="shop">Tienda</option></select>
                 <div class="button actualcoords" num="${markersIncluded}" id="marker-${markersIncluded}-button" style="background-color: red;"><span class="text" style="font-size: .4vw;">Actual coords</span></div>
             </div>
         `)

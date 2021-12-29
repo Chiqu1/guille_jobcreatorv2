@@ -1,0 +1,14 @@
+.edit-wrapper {
+    position: absolute;
+    width: 39.3vw;
+    height: 20vw;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: rgb(11, 13, 47);
+    border-radius: .3vw;
+    overflow-x: auto;
+}
