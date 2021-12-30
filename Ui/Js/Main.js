@@ -19,7 +19,7 @@ handleLoad = () => {
 
     JOB.ExecuteCallback = async function(name, data) {
         return new Promise(resolve => {
-            $.post("https://guille_jobcreatorv2/"+name, JSON.stringify({data: data}), function(result) {
+            $.post(`https://${GetParentResourceName()}/`+name, JSON.stringify({data: data}), function(result) {
                 resolve(JSON.parse(result))
             })
         })
@@ -176,6 +176,21 @@ handleLoad = () => {
         }
         JOB.ExecuteCallback("createJob", initialData)
     })
+
+    $(".dropdown-toggle").on("click", function() {
+        var isExpanded = $(this).attr("aria-expanded")
+        let that = this
+        if (isExpanded === "false") {
+            
+        } else {
+            setTimeout(() => {
+                console.log("remove")
+                $(that).removeClass("collapse")
+            }, 358);
+        }
+    })
+
+
 }
 
 

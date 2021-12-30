@@ -39,6 +39,7 @@ files {
     './Ui/Js/Main.js',
 
     './Ui/Css/Style.css',
+    './Ui/Css/Edit.css',
     './Ui/Css/Creatorpage.css',
 
     './Ui/Assets/*.png',
